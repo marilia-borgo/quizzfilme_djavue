@@ -59,6 +59,7 @@ methods: {
         this.loading = true
       resultadoApi.addNewResultado(resultado).then((resultado) => {
         this.loading = false
+        this.$router.push({ name: "resultado" })
         console.log(resultado)
       }) .catch((error) => {
             console.log('ferrou')
