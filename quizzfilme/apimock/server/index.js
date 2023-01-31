@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const base = require("./controllers/base");
 const accounts = require("./controllers/accounts");
 const tasks = require("./controllers/tasks");
+const resultado = require("./controllers/resultado");
 
 const YELLOW = "\x1b[33m%s\x1b[0m";
 const WHITE = "\x1b[37m";
@@ -35,6 +36,9 @@ app.get("/api/accounts/whoami", accounts.whoami);
 // TASKS
 app.get("/api/tasks/list", tasks.find);
 app.post("/api/tasks/add", tasks.add);
+
+//RESULTADO
+app.post("/api/resultado/add", resultado.add);
 
 app.listen(PORT, () => {
   console.log(

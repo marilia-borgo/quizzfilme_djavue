@@ -1,84 +1,71 @@
 <template>
-    <v-container class="fill-height">
-      <v-responsive class="d-flex align-center text-center fill-height">
-        <v-img contain height="240" src="@/assets/logo.svg" />
-        <blockquote class="blockquote text-h5">
-          &#8220;Aqui ta o bagulho do quizz se eu fiz o router certo&#8221;
-          <footer>
-            <small>
-              <em>&mdash; John Johnson &mdash;</em>
-            </small>
-          </footer>
-        </blockquote>
+    <div>
+        <p> Qual seu horário favorito?</p>
+        <v-radio-group v-model="horario">
+            <v-radio label="Manhã" value="a"></v-radio>
+            <v-radio label="Tarde" value="b"></v-radio>
+            <v-radio label="Noite" value="c"></v-radio>
+            <div>{{ horario }}</div>
+        </v-radio-group>
+
+        <p> Qual sua planta favorita?</p>
+        <v-radio-group v-model="planta">
+            <v-radio label="Margarida" value="a"></v-radio>
+            <v-radio label="Samambaia" value="b"></v-radio>
+            <v-radio label="Beladona" value="c"></v-radio>
+            <div>{{ planta }}</div>
+        </v-radio-group>
+
+        <p> Qual sua bebida favorita?</p>
+        <v-radio-group v-model="bebida">
+            <v-radio label="chá" value="a"></v-radio>
+            <v-radio label="suco" value="b"></v-radio>
+            <v-radio label="Café" value="c"></v-radio>
+            <div>{{ bebida }}</div>
+        </v-radio-group>
+        <v-btn @click="contabilizarRespostas()">
+            Submit
+        </v-btn>
+    </div>
+</template>
   
-        <div class="text-body-1 mb-n1 pt-4">Bem-vindo ao template</div>
-        <h1 class="text-h2 font-weight-bold">Djàvue</h1>
-        <code>Vue3 + Vuetify + Vite</code>
-  
-        <div class="py-6" />
-  
-        <v-row class="d-flex align-center justify-center">
-          <v-col cols="auto">
-            <v-btn
-              color="primary"
-              :to="{ name: 'base-getstarted' }"
-              min-width="228"
-              rel="noopener noreferrer"
-              size="x-large"
-              variant="flat"
-              class="my-4">
-              <v-icon icon="mdi-speedometer" size="large" start />
-              Get Started
-            </v-btn>
-            <v-btn
-              v-if="!loggedUser"
-              color="primary"
-              min-width="228"
-              rel="noopener noreferrer"
-              size="x-large"
-              variant="flat"
-              :to="{ name: 'accounts-login' }"
-              class="my-4">
-              <v-icon icon="mdi-account-arrow-right-outline" size="large" start />
-              Login
-            </v-btn>
-            <v-btn
-              v-else
-              color="primary"
-              min-width="228"
-              rel="noopener noreferrer"
-              size="x-large"
-              variant="flat"
-              :to="{ name: 'accounts-logout' }">
-              <v-icon icon="mdi-account-arrow-right-outline" size="large" start />
-              Logout
-            </v-btn>
-            <v-btn
-              v-if="loggedUser"
-              color="primary"
-              min-width="228"
-              rel="noopener noreferrer"
-              size="x-large"
-              variant="flat"
-              :to="{ name: 'tasks-list' }"
-              class="my-4">
-              <v-icon icon="mdi-folder-star-multiple" size="large" start />
-              tarefas
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-responsive>
-    </v-container>
-  </template>
-  
-  <script>
-  import { mapState } from "pinia"
-  import { useAccountsStore } from "@/stores/accountsStore"
-  
-  export default {
-    computed: {
-      ...mapState(useAccountsStore, ["loggedUser"]),
+<script>
+import { mapState } from "pinia"
+import { useAccountsStore } from "@/stores/accountsStore"
+import tratamentoQuizz from "@/helpers/tratamentoQuizz.js"
+import resultadoApi from "@/api/resultado.api.js"
+
+export default {
+data () {
+    return {
+    horario: '',
+    planta: '',
+    bebida: '',
+    }
+},
+computed: {
+    ...mapState(useAccountsStore, ["loggedUser"]),
+},
+methods: {
+    contabilizarRespostas(){
+        let respostas = []
+        respostas.push(this.horario, this.planta, this.bebida)
+        console.log(respostas)
+        let result = tratamentoQuizz.defineLetra(respostas)
+        this.salvarResultado(result)
+        return result
     },
-  }
-  </script>
-  
+    salvarResultado(resultado){
+        this.loading = true
+      resultadoApi.addNewResultado(resultado).then((resultado) => {
+        this.loading = false
+        console.log(resultado)
+      }) .catch((error) => {
+            console.log('ferrou')
+            this.loading = false
+        })
+
+    }
+},
+}
+</script>
