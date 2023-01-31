@@ -1,0 +1,11 @@
+__pycache__
+dkdata
+*.pyc
+.coverage
+coverage.xml
+htmlcov/
+.idea
+/quizzfilme.log
+/static
+
+/apimock/node_modules
