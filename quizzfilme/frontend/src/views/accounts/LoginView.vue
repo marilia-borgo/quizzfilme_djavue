@@ -106,7 +106,7 @@ export default {
       }
     },
     showTasks() {
-      this.$router.push({ name: "tasks-list" })
+      this.$router.push({ name: "quizz" })
       console.log("--> tasks")
     },
   },
