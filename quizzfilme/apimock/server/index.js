@@ -38,6 +38,7 @@ app.get("/api/tasks/list", tasks.find);
 app.post("/api/tasks/add", tasks.add);
 
 //RESULTADO
+app.get("/api/resultado/", resultado.find);
 app.post("/api/resultado/add", resultado.add);
 
 app.listen(PORT, () => {

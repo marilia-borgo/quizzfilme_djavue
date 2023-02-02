@@ -14,4 +14,16 @@ addNewResultado: (resultado) => {
         })
     })
 },
+getResultado: () => {
+return new Promise((resolve, reject) => {
+    api
+    .get("/api/resultado/")
+    .then((response) => {
+        return resolve(response.data)
+    })
+    .catch((error) => {
+        return reject(error)
+    })
+    })
+}
 }
