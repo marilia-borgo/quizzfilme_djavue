@@ -58,7 +58,6 @@
 <script>
 import { mapState } from "pinia"
 import { useAccountsStore } from "@/stores/accountsStore"
-import tratamentoQuizz from "@/helpers/tratamentoQuizz.js"
 import resultadoApi from "@/api/resultado.api.js"
 
 export default {
@@ -80,8 +79,7 @@ methods: {
         let respostas = []
         respostas.push(this.cor, this.foto, this.animal, this.mataria, this.bebida)
         console.log(respostas)
-        let result = tratamentoQuizz.defineLetra(respostas)
-        this.salvarResultado(result)
+        this.salvarResultado(respostas)
         return result
     },
     salvarResultado(resultado){

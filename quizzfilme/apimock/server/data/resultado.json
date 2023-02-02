@@ -1,7 +1,8 @@
 [
   {
-  "id": 1,
-  "resultado": "princess",
-  "userId": 1
+    "id": 1,
+    "respostas": "a,a,a,a",
+    "resultado": "princess",
+    "userId": 1
   }
 ]
