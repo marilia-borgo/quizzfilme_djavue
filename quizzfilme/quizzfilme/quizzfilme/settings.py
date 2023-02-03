@@ -56,6 +56,7 @@ LOCAL_APPS = [
     "quizzfilme.base",
     "quizzfilme.accounts",
     "quizzfilme.tasks",
+    "quizzfilme.quizz",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
