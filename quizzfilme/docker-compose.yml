@@ -1,8 +1,9 @@
 services:
-
   backend:
     image: back-quizzfilme
     hostname: back-quizzfilme
+    volumes:
+      - ./quizzfilme:/app/quizzfilme
     build:
       context: ./
       dockerfile: Dockerfile
@@ -26,8 +27,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
-    restart:
-      on-failure
+    restart: on-failure
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $POSTGRES_DB -U $POSTGRES_USER"]
       interval: 10s
