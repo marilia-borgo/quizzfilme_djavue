@@ -1,22 +1,20 @@
 <template>
   <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
-      <v-img contain height="240" src="@/assets/logo.svg" />
-      <blockquote class="blockquote text-h5">
-        &#8220;Primeiro, resolva o problema. Depois, escreva o código.&#8221;
-        <footer>
-          <small>
-            <em>&mdash; John Johnson &mdash;</em>
-          </small>
-        </footer>
-      </blockquote>
+    <div
+    class="d-flex justify-center mb-10 mt-10"
+    >
+      <h1>🅀🅄🄸🅉🅉🄵🄸🄻🄼🄴</h1>
+   </div>
+    <div>
+      <h2 class="mb-5"> Este quizz de personalidade foi 
+        desenvolvido para ajudá-lo a encontrar filmes qu
+        e correspondam ao seu estilo, gostos e interesses. </h2>
 
-      <div class="text-body-1 mb-n1 pt-4">Bem-vindo ao template</div>
-      <h1 class="text-h2 font-weight-bold">Djàvue</h1>
-      <code>Vue3 + Vuetify + Vite</code>
+      <h3 class="mb-5">Basta responder a algumas perguntas simples sobre suas preferências e valores, 
+        e em poucos minutos você terá uma lista de sugestões de filmes para assistir. </h3>
 
-      <div class="py-6" />
-
+       <h1>Então, vamos começar e descobrir quais filmes são perfeitos para você!</h1>
+    </div>
       <v-row class="d-flex align-center justify-center">
         <v-col cols="auto">
           <v-btn
@@ -38,7 +36,7 @@
             size="x-large"
             variant="flat"
             :to="{ name: 'accounts-login' }"
-            class="my-4">
+            class="my-4 ml-3">
             <v-icon icon="mdi-account-arrow-right-outline" size="large" start />
             Login
           </v-btn>
@@ -67,7 +65,6 @@
           </v-btn>
         </v-col>
       </v-row>
-    </v-responsive>
   </v-container>
 </template>
 
