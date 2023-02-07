@@ -6,12 +6,17 @@ from .service import resultado
 
 
 def recebe_resultado(request):
+    breakpoint()
     respostas = request.POST['resultado']
-    resultado.contabilizaResultado(respostas)
+    user = request.POST['user']
+    breakpoint()
+    resultado.contabilizaResultado(respostas, user)
 
     return JsonResponse({})
 
 def get_resultado(request):
-    user= request.POST[user]
+    breakpoint()
+    user= request.GET['user']
+    breakpoint()
     resultado = resultado.pegaResultado(user)
     return JsonResponse({resultado})
