@@ -75,7 +75,7 @@ mounted() {
   methods: {
     getResultado() {
       this.loading = true
-      resultadoApi.getResultado().then((data) => {
+      resultadoApi.getResultado(this.loggedUser).then((data) => {
         this.resultado = data.todos[0]
         console.log(this.resultado)
         this.loading = false

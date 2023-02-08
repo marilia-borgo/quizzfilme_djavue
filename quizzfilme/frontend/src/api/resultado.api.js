@@ -4,8 +4,9 @@ import apiHelpers from "./helpers.js"
 export default {
 addNewResultado: (resultado) => {
     return new Promise((resolve, reject) => {
+    a = JSON.stringify(user)
     api
-        .post("/api/resultado/add", apiHelpers.dataToForm({ resultado }))
+        .post("/api/resultado/add", apiHelpers.dataToForm({ a, resultado }))
         .then((response) => {
         return resolve(response.data)
         })
@@ -14,10 +15,10 @@ addNewResultado: (resultado) => {
         })
     })
 },
-getResultado: () => {
+getResultado: (user) => {
 return new Promise((resolve, reject) => {
     api
-    .get("/api/resultado/")
+    .get("/api/resultado/", user)
     .then((response) => {
         return resolve(response.data)
     })
