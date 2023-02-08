@@ -27,10 +27,8 @@ def contabilizaResultado(respostas, user):
     salvaPersonalidadeBanco(personalidade, user)
 
 def salvaPersonalidadeBanco(personalidade, user):
-    personalidade = Personalidade(resultado=personalidade)
-    user=Personalidade(user_id=user)
+    personalidade = Personalidade(resultado=personalidade, user_id=user)
     personalidade.save()
-    user.save()
 
 def get_resultado(user):
     resultado = Personalidade.objects.filter(user_id=user)

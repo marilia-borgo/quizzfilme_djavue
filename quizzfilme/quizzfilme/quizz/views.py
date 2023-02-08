@@ -7,11 +7,12 @@ from .service import resultado
 
 def recebe_resultado(request):
     respostas = request.POST['resultado']
-    resultado.contabilizaResultado(respostas)
+    user = request.user.id
+    resultado.contabilizaResultado(respostas, user)
 
     return JsonResponse({})
 
 def get_resultado(request):
-    user= request.POST[user]
+    user = request.user.id
     resultado = resultado.pegaResultado(user)
-    return JsonResponse({resultado})
+    return JsonResponse(resultado)
