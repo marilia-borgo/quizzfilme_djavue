@@ -14,5 +14,5 @@ def recebe_resultado(request):
 
 def get_resultado(request):
     user = request.user.id
-    resultado = resultado.pegaResultado(user)
-    return JsonResponse(resultado)
+    resultado_filmes = resultado.pega_resultado(user)
+    return JsonResponse(resultado_filmes)

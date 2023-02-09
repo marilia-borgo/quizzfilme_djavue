@@ -1,3 +1,5 @@
+import json
+
 import requests
 
 from ..models import Personalidade
@@ -30,26 +32,24 @@ def salvaPersonalidadeBanco(personalidade, user):
     personalidade = Personalidade(resultado=personalidade, user_id=user)
     personalidade.save()
 
-def get_resultado(user):
-    resultado = Personalidade.objects.filter(user_id=user)
-    decide_filmes(resultado)
-    return resultado
+def pega_resultado(user):
+    return decide_filmes(Personalidade.objects.get(user_id=user))
 
 def decide_filmes(resultado):
-    if resultado == 'Princesa':
-        r = requests.get('https://api.themoviedb.org/3/movie/164?api_key=6be3b0e227f0e67a222cdbe605a730e8&language=pt-br&page=1', auth=('user', 'pass'))
-        filme = r['title']
-        return filme
+    relacao_resultado_filme = {
+        'Princesa': 164,
+        'Espírito Livre': 6282,
+        'Perdedor': 6282
+    }
+    r = requests.get(f"https://api.themoviedb.org/3/movie/{relacao_resultado_filme[resultado.resultado]}?api_key=6be3b0e227f0e67a222cdbe605a730e8&language=pt-br&page=1", auth=('user', 'pass'))
+    filme =  json.loads(r.text)
+    filme_info = {
+        'titulo': filme['title'],
+        'resumo': filme['overview'],
+        'personalidade': resultado.resultado
+    }
+    return filme_info
     
-    if resultado == 'Espírito Livre':
-        r = requests.get('https://api.themoviedb.org/3/movie/6282?api_key=6be3b0e227f0e67a222cdbe605a730e8&language=pt-br&page=1', auth=('user', 'pass'))
-        filme = r['title']
-        return filme
-    
-    if resultado == 'Perdedor':
-        r = requests.get('https://api.themoviedb.org/3/movie/6282?api_key=6be3b0e227f0e67a222cdbe605a730e8&language=pt-br&page=1', auth=('user', 'pass'))
-        filme = r['title']
-        return filme
 
 
 
