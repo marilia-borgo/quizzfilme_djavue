@@ -7,45 +7,56 @@
     <v-img
       class="align-end text-white"
       height="200"
-      src="https://media.istockphoto.com/id/1350788409/photo/pink-color-background.jpg?b=1&s=170667a&w=0&k=20&c=w2q6NV8dHpNIWpYpq_capQau6-RDNoJepXXMhRH5ySo="
+      src="@/assets/background-home.png"
       cover
     >
-      <v-card-title>{{resultado.resultado}}</v-card-title>
+      <v-card-title color="deep-purple-darken-4">{{infos.personalidade}}</v-card-title>
     </v-img>
-
-    <v-card-subtitle class="pt-4">
-      Aqui segue algumas indicações de filmes
-    </v-card-subtitle>
-
     <v-card-text>
-      <div>textinho aqui</div>
+      <div>Baseado nas respostas do seu Quizz</div>
 
-      <div>Aqui tbm</div>
+      <div>Pesquisamos o filme que mais combina com você!</div>
     </v-card-text>
 
     <v-card-actions>
-      <v-btn color="orange">
+      <v-btn color="deep-purple-darken-4">
         Share
       </v-btn>
 
-      <v-btn color="orange" @click="showfilmes()">
+      <v-btn color="deep-purple-darken-4" @click="showfilmes()">
         Ver filmes
       </v-btn>
     </v-card-actions>
-    <v-window
+    <v-card
+    elevation="10"
+    outlined
     v-if="show"
-    v-model="window"
-    show-arrows
-  >
-    <v-window-item
-      v-for="n in length"
-      :key="n"
-    >
-      <v-card height="200px" class="d-flex justify-center align-center">
-        <span class="text-h2">Card {{ n }}</span>
-      </v-card>
-    </v-window-item>
-  </v-window>
+    class="pa-3"
+  >  
+  <v-row no-gutters>
+      <v-col
+        cols="12"
+        sm="4"
+      >
+        <v-img
+        max-height="225"
+        max-width="303"
+        :src="posterImg"
+      ></v-img>
+        
+      </v-col>
+
+      <v-col
+        cols="12"
+        sm=""
+      >
+    
+        <p class="ma-2"> {{ this.infos.titulo }}</p>
+        <p class="ma-2"> {{ this.infos.resumo }}</p>
+        
+      </v-col>
+    </v-row>
+  </v-card>
   </v-card>
 
 </div>
@@ -60,6 +71,8 @@ import resultadoApi from "@/api/resultado.api"
 export default {
 data () {
     return {
+    posterImg: '',
+    infos: '',
     show: false,
     resultado: '',
     length: 3,
@@ -75,9 +88,10 @@ mounted() {
   methods: {
     getResultado() {
       this.loading = true
-      resultadoApi.getResultado(this.loggedUser).then((data) => {
-        this.resultado = data.todos[0]
-        console.log(this.resultado)
+      resultadoApi.getResultado().then((data) => {
+        this.infos = data
+        this.posterImg = `https://image.tmdb.org/t/p/original/${this.infos.poster_path}`
+        console.log(posterImg)
         this.loading = false
       })
     },
