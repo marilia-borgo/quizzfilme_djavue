@@ -46,6 +46,7 @@ def decide_filmes(resultado):
     filme_info = {
         'titulo': filme['title'],
         'resumo': filme['overview'],
+        'poster_path':filme['poster_path'],
         'personalidade': resultado.resultado
     }
     return filme_info
