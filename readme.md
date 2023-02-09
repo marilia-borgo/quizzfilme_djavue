@@ -38,3 +38,10 @@ a72fb2ab3ba2   back-todoten           "wait-for-it localho…"  mytodolist_backe
 - `http://localhost/api` para acessar diretamente alguma rota da API
 - `http://localhost/admin` para acessar o Django admin
 
+### Para rodar com mock:
+
+```bash
+$ docker-compose -f docker-compose.yml -f docker-compose.apimock.yml up frontend
+```
+
+
