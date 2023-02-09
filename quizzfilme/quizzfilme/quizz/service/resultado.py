@@ -37,9 +37,9 @@ def pega_resultado(user):
 
 def decide_filmes(resultado):
     relacao_resultado_filme = {
-        'Princesa': 164,
-        'Espírito Livre': 6282,
-        'Perdedor': 6282
+        'Princesa': 114,
+        'Espírito Livre': 2786,
+        'Perdedor': 22538
     }
     r = requests.get(f"https://api.themoviedb.org/3/movie/{relacao_resultado_filme[resultado.resultado]}?api_key=6be3b0e227f0e67a222cdbe605a730e8&language=pt-br&page=1", auth=('user', 'pass'))
     filme =  json.loads(r.text)
