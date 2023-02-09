@@ -5,7 +5,9 @@
     multi-line
     location="center"
     elevation="12"
-    content-class="snackbar-ft-size">
+    content-class="snackbar-ft-size"
+    timeout="800"
+    >
     {{ snackbarMessage }}
   </v-snackbar>
 </template>

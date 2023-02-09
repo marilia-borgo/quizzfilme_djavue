@@ -2,9 +2,9 @@ import api from "./config.js"
 import apiHelpers from "./helpers.js" 
 
 export default {
-addNewResultado: (resultado) => {
+addNewResultado: (resultado, user) => {
     return new Promise((resolve, reject) => {
-    a = JSON.stringify(user)
+    let a = JSON.stringify(user)
     api
         .post("/api/resultado/add", apiHelpers.dataToForm({ a, resultado }))
         .then((response) => {

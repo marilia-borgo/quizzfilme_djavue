@@ -37,8 +37,8 @@
             rounded="pill"
             color="primary"
             variant="outlined"
-            :to="{ name: 'base-home' }">
-            Início
+            :to="{ name: 'cadastrar' }">
+            Criar Usuário
           </v-btn>
         </v-form>
       </v-col>
@@ -76,7 +76,7 @@ export default {
     AccountsApi.whoami().then((response) => {
       if (response.authenticated) {
         this.saveLoggedUser(response.user)
-        this.appStore.showSnackbar("Usuário já logado", "warning")
+        this.appStore.showSnackbar("Usuário já logado")
         this.showTasks()
       }
     })

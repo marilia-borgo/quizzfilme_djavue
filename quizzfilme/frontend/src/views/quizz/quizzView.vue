@@ -129,18 +129,21 @@ methods: {
     contabilizarRespostas(){
         let respostas = []
         respostas.push(this.cor, this.foto, this.animal, this.mataria, this.bebida)
-        console.log(this.loggedUser)
+        console.log(this.loggedUser.id)
+        debugger
         this.salvarResultado(respostas)
         return respostas
     },
     salvarResultado(resultado){
         this.loading = true
-      resultadoApi.addNewResultado(resultado, this.loggedUser.id).then((resultado) => {
+        debugger
+        resultadoApi.addNewResultado(resultado, this.loggedUser.id).then((resultado) => {
         this.loading = false
         this.$router.push({ name: "resultado" })
         console.log(resultado)
       }) .catch((error) => {
             console.log('ferrou')
+            console.log(error)
             this.loading = false
         })
 

@@ -2,6 +2,8 @@
 import EmptyLayout from "@/layouts/default/EmptyLayout.vue"
 import LoginView from "@/views/accounts/LoginView.vue"
 import LogoutView from "@/views/accounts/LogoutView.vue"
+import CadastroView from "@/views/accounts/CadastroView.vue"
+
 
 export default [
   {
@@ -18,6 +20,11 @@ export default [
         name: "accounts-logout",
         component: LogoutView,
       },
+      {
+        path: "cadastrar",
+        name: "cadastrar",
+        component: CadastroView
+      }
     ],
   },
 ]

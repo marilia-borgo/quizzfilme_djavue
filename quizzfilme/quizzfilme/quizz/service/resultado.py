@@ -33,7 +33,7 @@ def salvaPersonalidadeBanco(personalidade, user):
     personalidade.save()
 
 def pega_resultado(user):
-    return decide_filmes(Personalidade.objects.get(user_id=user))
+    return decide_filmes(Personalidade.objects.filter(user_id=user).order_by('-id').first()) 
 
 def decide_filmes(resultado):
     relacao_resultado_filme = {
