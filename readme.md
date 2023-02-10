@@ -3,6 +3,9 @@ Esse projeto é site-web onde o usuário faz um quizz para determinar sua person
 ## Porque fazer esse projeto?
 Esse projeto foi feito para testar meus conhecimentos da criação de um sistema full-stack, com docker e Api Mock.
 
+## Linkzinho pro vídeo
+[quizzfilme apresentação](https://drive.google.com/file/d/1Pypl0HYsp6Awa55C52c3O_vmKoMQq27_/view?usp=share_link)
+
 ## O que eu usei para fazer esse projeto?
 - Template Djavue feito pelo @huogerac.
 - django
