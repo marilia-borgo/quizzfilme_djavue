@@ -27,6 +27,7 @@
               rounded="pill"
               color="primary"
               append-icon="mdi-chevron-right"
+              :to="{name: 'quizz'}"
               @click="cadastrar">
               Cadastrar
             </v-btn>
