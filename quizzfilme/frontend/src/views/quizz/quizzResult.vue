@@ -53,6 +53,11 @@
     
         <p class="ma-2"> {{ this.infos.titulo }}</p>
         <p class="ma-2"> {{ this.infos.resumo }}</p>
+        <v-rating 
+          v-model="rating" 
+          @update:modelValue="rate"
+          clearable
+        ></v-rating>
         
       </v-col>
     </v-row>
@@ -86,6 +91,16 @@ mounted() {
     this.getResultado()
   },
   methods: {
+    rate (rating, post_id) {
+      fetch(`/rate/${post_id}/${rating}/`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }).then(rest => {
+                window.location.reload();
+            })
+    },
     getResultado() {
       this.loading = true
       resultadoApi.getResultado().then((data) => {
