@@ -110,8 +110,16 @@
 import { mapState } from "pinia"
 import { useAccountsStore } from "@/stores/accountsStore"
 import resultadoApi from "@/api/resultado.api.js"
+import AccountsApi from "@/api/accounts.api.js"
+import { useAppStore } from "@/stores/appStore"
 
 export default {
+
+setup() {
+    const appStore = useAppStore()
+    const accountsStore = useAccountsStore()
+    return { appStore, accountsStore }
+},
 data () {
     return {
     cor: '',
@@ -127,6 +135,11 @@ computed: {
 },
 methods: {
     contabilizarRespostas(){
+        AccountsApi.whoami().then((response) => {
+            if (!response.authenticated) {
+        this.appStore.showSnackbar("Faça login primeiro")
+            }
+        })
         let respostas = []
         respostas.push(this.cor, this.foto, this.animal, this.mataria, this.bebida)
         console.log(this.loggedUser.id)
